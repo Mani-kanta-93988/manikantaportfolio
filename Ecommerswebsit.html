@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecommerce Website</title>
+  <link rel="stylesheet" href="./Ecommerswebsit.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Header -->
+   
+<header>
+  <div class="logo"><i class="fa-solid fa-store"></i> MK Super Stores</div>
+  <div class="search-container">
+    <input placeholder="Search for products...">
+    <i class="fa fa-search"></i>
+  </div>
+  <div class="header-right">
+    <span onclick="openLogin()"><i class="fa-solid fa-right-to-bracket"></i> Login</span>
+    <span onclick="openCart()"><i class="fa-solid fa-cart-shopping"></i> Cart <span class="badge" id="cart-count">0</span></span>
+    <span onclick="openProfile()"><i class="fa-solid fa-user"></i> Profile</span>
+  </div>
+</header>
+
+<div id="overlay"></div>
+
+<!-- Login Modal -->
+<div class="popup-box" id="login-box">
+  <div class="modal-logo"><i class="fa-solid fa-store"></i> MK Super Stores</div>
+  <h2>Login</h2>
+  <input id="login-email" placeholder="Enter Email">
+  <input id="login-pass" type="password" placeholder="Enter Password">
+  <button onclick="loginUser()">Login</button>
+  <p class="switch" onclick="showRegister()">New user? Create Account</p>
+</div>
+
+<!-- Register Modal -->
+<div class="popup-box" id="register-box">
+  <div class="modal-logo"><i class="fa-solid fa-store"></i> MK Super Stores</div>
+  <h2>Create Account</h2>
+  <input id="reg-name" placeholder="Full Name">
+  <input id="reg-email" placeholder="Email">
+  <input id="reg-pass" type="password" placeholder="Password">
+  <button onclick="registerUser()">Register</button>
+  <p class="switch" onclick="showLogin()">Already have an account? Login</p>
+</div>
+
+<!-- Cart Side Box -->
+<div class="side-box" id="cart-box">
+  <div class="modal-logo"><i class="fa-solid fa-store"></i> MK Super Stores</div>
+  <h3>Your Cart</h3>
+  <ul id="cart-list"></ul>
+  <button onclick="closeAll()">Close</button>
+</div>
+
+<!-- Profile Side Box -->
+<div class="side-box" id="profile-box">
+  <div class="modal-logo"><i class="fa-solid fa-store"></i> MK Super Stores</div>
+  <h3>User Profile</h3>
+  <p id="profile-name"></p>
+  <p id="profile-email"></p>
+  <button onclick="logoutUser()">Logout</button>
+</div>
+  <!-- Categories with Dropdowns -->
+  <section class="first">
+    <div class="first-second">
+      <div class="dropdown">
+        <button><i class="fa-solid fa-mobile"></i> Mobiles & Tablets</button>
+        <div class="dropdown-content">
+          <a href="#">Smartphones</a>
+          <a href="#">Feature Phones</a>
+          <a href="#">Tablets</a>
+          <a href="#">Accessories</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-shirt"></i> Clothes</button>
+        <div class="dropdown-content">
+          <a href="#">Men's Clothing</a>
+          <a href="#">Women's Clothing</a>
+          <a href="#">Kids' Clothing</a>
+          <a href="#">Accessories</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-plug"></i> Electronics</button>
+        <div class="dropdown-content">
+          <a href="#">Laptops</a>
+          <a href="#">Cameras</a>
+          <a href="#">Headphones</a>
+          <a href="#">Smart Watches</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-house-user"></i> Home</button>
+        <div class="dropdown-content">
+          <a href="#">Furniture</a>
+          <a href="#">Decor</a>
+          <a href="#">Kitchen</a>
+          <a href="#">Storage</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-tv"></i> TVs & Appliances</button>
+        <div class="dropdown-content">
+          <a href="#">LED TVs</a>
+          <a href="#">Refrigerators</a>
+          <a href="#">Washing Machines</a>
+          <a href="#">Microwaves</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-plane"></i> Flight Bookings</button>
+        <div class="dropdown-content">
+          <a href="#">Domestic Flights</a>
+          <a href="#">International Flights</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-utensils"></i> Food</button>
+        <div class="dropdown-content">
+          <a href="#">Fruits</a>
+          <a href="#">Vegetables</a>
+          <a href="#">Snacks</a>
+          <a href="#">Beverages</a>
+          <a href="#">Bakery</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button><i class="fa-solid fa-cart-shopping"></i> Grocery</button>
+        <div class="dropdown-content">
+          <a href="#">Staples</a>
+          <a href="#">Dairy</a>
+          <a href="#">Beverages</a>
+          <a href="#">Household</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<div class="slider">
+    <div class="slides" id="slideImages">
+        <!-- MK Group of Schools -->
+        <div class="banner-slide" style="position:relative;">
+            <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+                 alt="MK Group of Schools" style="width:100%; height:300px; object-fit:cover; border-radius:15px;">
+            <div style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.5); padding:10px 15px; border-radius:10px; color:white;">
+                <h2 style="margin:0; font-size:24px;">MK Group of Schools</h2>
+                <p style="margin:0; font-size:16px;">Quality Education for Your Children</p>
+            </div>
+        </div>
+
+        <!-- MK Super Stores -->
+        <div class="banner-slide" style="position:relative;">
+            <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+                 alt="MK Super Stores" style="width:100%; height:300px; object-fit:cover; border-radius:15px;">
+            <div style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.5); padding:10px 15px; border-radius:10px; color:white;">
+                <h2 style="margin:0; font-size:24px;">MK Super Stores</h2>
+                <p style="margin:0; font-size:16px;">Everything You Need at One Place</p>
+            </div>
+        </div>
+
+        <!-- MK Companies -->
+        <div class="banner-slide" style="position:relative;">
+            <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+                 alt="MK Companies" style="width:100%; height:300px; object-fit:cover; border-radius:15px;">
+            <div style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.5); padding:10px 15px; border-radius:10px; color:white;">
+                <h2 style="margin:0; font-size:24px;">MK Companies</h2>
+                <p style="margin:0; font-size:16px;">Innovation & Excellence in Business</p>
+            </div>
+        </div>
+
+        <!-- MK Travel & Driving School -->
+        <div class="banner-slide" style="position:relative;">
+            <img src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+                 alt="MK Travel & Driving School" style="width:100%; height:300px; object-fit:cover; border-radius:15px;">
+            <div style="position:absolute; bottom:20px; left:20px; background:rgba(0,0,0,0.5); padding:10px 15px; border-radius:10px; color:white;">
+                <h2 style="margin:0; font-size:24px;">MK Travel & Driving School</h2>
+                <p style="margin:0; font-size:16px;">Learn Driving the Smart Way</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot active-dot" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</div>
+
+<div class="banner-section">
+  <!-- Mobiles & Tablets -->
+  <div class="banner-card">
+    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+         alt="Mobiles & Tablets">
+    <div class="banner-text">
+      <h3>Mobiles & Tablets</h3>
+      <p>Latest Smartphones & Accessories</p>
+    </div>
+  </div>
+
+  <!-- Food -->
+  <div class="banner-card">
+    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+         alt="Food">
+    <div class="banner-text">
+      <h3>Food & Snacks</h3>
+      <p>Delicious Meals & Snacks</p>
+    </div>
+  </div>
+
+  <!-- Groceries (Supermarket / Vegetables) -->
+  <div class="banner-card">
+    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
+         alt="Groceries">
+    <div class="banner-text">
+      <h3>Groceries</h3>
+      <p>Fresh Vegetables & Daily Essentials</p>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-section">
+  <h2>You may like...</h2>
+  <div class="scroll-container">
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>Samsung Galaxy A34</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-12-5g.jpg">
+      <p>Redmi Note 12 5G</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>Realme Narzo 60 Pro</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/iqoo-z7s.jpg">
+      <p>iQOO Z7s 5G</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>Vivo T2 5G</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-m34-5g.jpg">
+      <p>Samsung M34 5G</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>Oppo A78</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>OnePlus Nord CE 3 Lite</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-12-5g.jpg">
+      <p>POCO X5 Pro</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/realme-c53.jpg">
+      <p>Realme C53</p>
+    </div>
+
+    <!-- EXTRA IMAGES ADDED -->
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg">
+      <p>iPhone 14</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x5-pro-5g.jpg">
+      <p>Samsung S23</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>OnePlus 11</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg">
+      <p>Google Pixel 7</p>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="static-section">
+  <h2>Top Picks</h2>
+  <div class="static-container">
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Smartphone</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/3394656/pexels-photo-3394656.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Headphones">
+      <p>Headphones</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shoes">
+      <p>Shoes</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Backpack</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kitchen Jar">
+      <p>Kitchen Jar</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/892618/pexels-photo-892618.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Perfume">
+      <p>Perfume</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Toy">
+      <p>Toy</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wrist Watch">
+      <p>Wrist Watch</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/163077/pexels-photo-163077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Makeup Kit">
+      <p>Makeup Kit</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hair Dryer">
+      <p>Hair Dryer</p>
+    </div>
+        <div class="static-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Smartphone</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/3394656/pexels-photo-3394656.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Headphones">
+      <p>Headphones</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shoes">
+      <p>Shoes</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Backpack</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wrist Watch">
+      <p>Kitchen Jar</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/892618/pexels-photo-892618.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Perfume">
+      <p>Perfume</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Toy">
+      <p>Toy</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wrist Watch">
+      <p>Wrist Watch</p>
+    </div>
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hair Dryer">
+      <p>Hair Dryer</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wrist Watch">
+      <p>Makeup Kit</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hair Dryer">
+      <p>Hair Dryer</p>
+    </div>
+
+  </div>
+</div>
+
+  <div class="scroll-section">
+  <h2>You may like...</h2>
+  <div class="scroll-container">
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Smartphone</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Headphones</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shoes">
+      <p>Shoes</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Backpack</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kitchen Jar">
+      <p>Kitchen Jar</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/892618/pexels-photo-892618.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Perfume">
+      <p>Perfume</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Toy">
+      <p>Toy</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Watch">
+      <p>Watch</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Makeup Kit</p>
+    </div>
+
+    <div class="scroll-card">
+      <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hair Dryer">
+      <p>Hair Dryer</p>
+    </div>
+
+  </div>
+</div>
+
+  <div class="static-section">
+  <h2>Top Picks</h2>
+  <div class="static-container">
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Smartphone</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/3394656/pexels-photo-3394656.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Headphones">
+      <p>Headphones</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Shoes">
+      <p>Shoes</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Backpack</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kitchen Jar">
+      <p>Kitchen Jar</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/892618/pexels-photo-892618.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Perfume">
+      <p>Perfume</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Toy">
+      <p>Toy</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Watch">
+      <p>Watch</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Watch">
+      <p>Makeup Kit</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hair Dryer">
+      <p>Hair Dryer</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Smartphone</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/3394656/pexels-photo-3394656.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Headphones">
+      <p>Headphones</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smartphone">
+      <p>Shoes</p>
+    </div>
+
+    <div class="static-card">
+      <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Backpack">
+      <p>Backpack</p>
+    </div>
+
+  </div>
+</div>
+
+ <!-- Footer -->
+  <footer>
+    <div class="footer-section">
+      <h3>About Us</h3>
+      <p>MK Super Stores is your one-stop shop for electronics, fashion, groceries, and more. Quality products at affordable prices!</p>
+    </div>
+    <div class="footer-section">
+      <h3>Help & Support</h3>
+      <p><a href="#">Customer Service</a></p>
+      <p><a href="#">Returns & Refunds</a></p>
+      <p><a href="#">FAQs</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Policies</h3>
+      <p><a href="#">Privacy Policy</a></p>
+      <p><a href="#">Terms of Use</a></p>
+      <p><a href="#">Shipping Policy</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 MK Super Stores. All rights reserved.
+    </div>
+  </footer>
+  <script src="./Ecommerswebsit.js"></script>
+</body>
+</html>
